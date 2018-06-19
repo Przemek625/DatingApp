@@ -59,6 +59,7 @@ namespace DatingApp.API.Controllers
             if(userFromRepo == null)
                 return Unauthorized();
             // generate token
+            // https://jwt.io/
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("super secret key");
             // 3.32
