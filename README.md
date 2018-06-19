@@ -12,3 +12,20 @@ sqlite3 Datingapp.db
 insert into "values" values(1, "Przemek1");
 insert into "values" values(2, "Przemek2");
 insert into "values" values(3, "Przemek3");
+
+###
+
+###
+
+1. cd DatingappClient/
+2. npm install bootstrap@3.3.7 font-awesome --save
+
+###
+
+1.dotnet ef migrations add AddUserModel
+2.dotnet ef database update
+
+
+###
+
+Repository Pattern
