@@ -8,6 +8,7 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System;
+using Microsoft.Extensions.Configuration;
 
 namespace DatingApp.API.Controllers
 {
@@ -18,8 +19,11 @@ namespace DatingApp.API.Controllers
 
         private readonly IAuthRepository _repo;
 
-        public AuthController(IAuthRepository repo){
+        private readonly IConfiguration _cofig; 
 
+        public AuthController(IAuthRepository repo, IConfiguration config){
+
+            _cofig = config;
             _repo = repo;
 
         }
@@ -61,7 +65,7 @@ namespace DatingApp.API.Controllers
             // generate token
             // https://jwt.io/
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes("super secret key");
+            var key = Encoding.ASCII.GetBytes(_cofig.GetSection("AppSettings:Token").Value);
             // 3.32
             var tokenDescriptor = new SecurityTokenDescriptor
             {
