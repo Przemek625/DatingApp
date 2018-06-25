@@ -45,6 +45,7 @@ namespace DatingApp.API
             // AddTransient - Transient objects are always different. A new instance is provided to every controller and every service.
             //AddScoped - create new instance for every request
             // AddSingleton - create only one instance.
+            services.AddScoped<IDatingRepository, DatingRepository>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
@@ -58,6 +59,13 @@ namespace DatingApp.API
                     };
                 })
             ;
+            // This is temporary solution
+            // We ose this because of self referencing loop. Out Photo model has a reference to user model
+            // and user model has property back to photo.
+            services.AddMvc().AddJsonOptions(opt =>
+            {
+                opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
