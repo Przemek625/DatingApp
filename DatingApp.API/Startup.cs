@@ -36,12 +36,13 @@ namespace DatingApp.API
         {   
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddTransient<Seed>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
             services.AddCors();
             // https://docs.microsoft.com/pl-pl/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-2.1
             // we use it for dependency injection by adding this container
-            // AddTransient - create new instance of..
+            // AddTransient - Transient objects are always different. A new instance is provided to every controller and every service.
             //AddScoped - create new instance for every request
             // AddSingleton - create only one instance.
             services.AddScoped<IAuthRepository, AuthRepository>();
@@ -60,7 +61,7 @@ namespace DatingApp.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
@@ -86,7 +87,8 @@ namespace DatingApp.API
                     });
                 });
             }
-
+            // TODO: put it into Development mode in the future
+            seeder.SeedUsers();
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin().AllowCredentials());
 
             app.UseAuthentication();
