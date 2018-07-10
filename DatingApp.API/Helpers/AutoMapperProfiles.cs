@@ -36,6 +36,10 @@ namespace DatingApp.API.Helpers
             CreateMap<Photo, PhotosForDetailedDto>();
 
             CreateMap<UserForUpdateDto, User>();
+
+            CreateMap<PhotoForCreatingDto, Photo>();
+
+            CreateMap<Photo, PhotoForReturnDto>();
         }
 
     }
