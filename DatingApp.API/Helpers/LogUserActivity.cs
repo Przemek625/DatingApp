@@ -20,6 +20,7 @@ namespace DatingApp.API.Helpers
            var userId = int.Parse(resultContext.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value);
            var repo = resultContext.HttpContext.RequestServices.GetService<IDatingRepository>();
            var user = await repo.GetUser(userId);
+        //TODO this raise an exception if the token is wrong?    
            user.LastActive = DateTime.Now;
            await repo.saveAll();
         }
