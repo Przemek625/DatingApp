@@ -36,6 +36,8 @@ https://lostechies.com/jimmybogard/2016/07/20/integrating-automapper-with-asp-ne
 https://dotnetcoretutorials.com/2017/09/23/using-automapper-asp-net-core/
 https://github.com/AutoMapper/AutoMapper.Extensions.Microsoft.DependencyInjection
 
+https://pl.wikipedia.org/wiki/W%C5%82a%C5%9Bciwo%C5%9B%C4%87_(informatyka)
+
 ### vsc shourcuts
 `prop`
 `ctor`
@@ -71,3 +73,7 @@ dotner add package packageName
 ### Instal required libraries
 http://docs.automapper.org/en/stable/
 dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
+dotnet add package Cloudinary --version 0.0.5
+
+### ASP Dot Net Core docs
+https://docs.microsoft.com/pl-pl/aspnet/index?view=aspnetcore-2.1#pivot=core&panel=core_overview
